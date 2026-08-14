@@ -11,6 +11,8 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { WbSidebar } from "@/components/wb/sidebar";
+
 
 function NotFoundComponent() {
   return (
@@ -77,15 +79,22 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "WorkBuddy · AI 智能体工作台" },
+      {
+        name: "description",
+        content: "WorkBuddy 把项目、任务、技能与连接器整合到一处，让 AI 同事替你完成日常工作。",
+      },
+      { name: "author", content: "WorkBuddy" },
+      { property: "og:title", content: "WorkBuddy · AI 智能体工作台" },
+      {
+        property: "og:description",
+        content: "一句话下达任务，AI 同事自动调用技能与连接器完成并交付结果。",
+      },
       { property: "og:type", content: "website" },
+      { property: "og:site_name", content: "WorkBuddy" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
+
     links: [
       {
         rel: "stylesheet",
@@ -119,8 +128,14 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex h-screen overflow-hidden bg-background text-foreground">
+        <WbSidebar />
+        <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
+          {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+          <Outlet />
+        </main>
+      </div>
     </QueryClientProvider>
   );
 }
+

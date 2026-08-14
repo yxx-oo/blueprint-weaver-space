@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ColleaguesRouteImport } from './routes/colleagues'
+import { Route as ConnectorsRouteImport } from './routes/connectors'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as LibraryRouteImport } from './routes/library'
+import { Route as SkillsRouteImport } from './routes/skills'
+import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
+import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
+import { Route as TaskTaskIdRouteImport } from './routes/task.$taskId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ColleaguesRoute = ColleaguesRouteImport.update({
+  id: '/colleagues',
+  path: '/colleagues',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConnectorsRoute = ConnectorsRouteImport.update({
+  id: '/connectors',
+  path: '/connectors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LibraryRoute = LibraryRouteImport.update({
+  id: '/library',
+  path: '/library',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SkillsRoute = SkillsRouteImport.update({
+  id: '/skills',
+  path: '/skills',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
+  id: '/projects/',
+  path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsProjectIdRoute = ProjectsProjectIdRouteImport.update({
+  id: '/projects/$projectId',
+  path: '/projects/$projectId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TaskTaskIdRoute = TaskTaskIdRouteImport.update({
+  id: '/task/$taskId',
+  path: '/task/$taskId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/colleagues': typeof ColleaguesRoute
+  '/connectors': typeof ConnectorsRoute
+  '/discover': typeof DiscoverRoute
+  '/library': typeof LibraryRoute
+  '/skills': typeof SkillsRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/colleagues': typeof ColleaguesRoute
+  '/connectors': typeof ConnectorsRoute
+  '/discover': typeof DiscoverRoute
+  '/library': typeof LibraryRoute
+  '/skills': typeof SkillsRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
+  '/projects': typeof ProjectsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/colleagues': typeof ColleaguesRoute
+  '/connectors': typeof ConnectorsRoute
+  '/discover': typeof DiscoverRoute
+  '/library': typeof LibraryRoute
+  '/skills': typeof SkillsRoute
+  '/projects/$projectId': typeof ProjectsProjectIdRoute
+  '/task/$taskId': typeof TaskTaskIdRoute
+  '/projects/': typeof ProjectsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/colleagues'
+    | '/connectors'
+    | '/discover'
+    | '/library'
+    | '/skills'
+    | '/projects/$projectId'
+    | '/task/$taskId'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/colleagues'
+    | '/connectors'
+    | '/discover'
+    | '/library'
+    | '/skills'
+    | '/projects/$projectId'
+    | '/task/$taskId'
+    | '/projects'
+  id:
+    | '__root__'
+    | '/'
+    | '/colleagues'
+    | '/connectors'
+    | '/discover'
+    | '/library'
+    | '/skills'
+    | '/projects/$projectId'
+    | '/task/$taskId'
+    | '/projects/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ColleaguesRoute: typeof ColleaguesRoute
+  ConnectorsRoute: typeof ConnectorsRoute
+  DiscoverRoute: typeof DiscoverRoute
+  LibraryRoute: typeof LibraryRoute
+  SkillsRoute: typeof SkillsRoute
+  ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
+  TaskTaskIdRoute: typeof TaskTaskIdRoute
+  ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/colleagues': {
+      id: '/colleagues'
+      path: '/colleagues'
+      fullPath: '/colleagues'
+      preLoaderRoute: typeof ColleaguesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/connectors': {
+      id: '/connectors'
+      path: '/connectors'
+      fullPath: '/connectors'
+      preLoaderRoute: typeof ConnectorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/library': {
+      id: '/library'
+      path: '/library'
+      fullPath: '/library'
+      preLoaderRoute: typeof LibraryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/skills': {
+      id: '/skills'
+      path: '/skills'
+      fullPath: '/skills'
+      preLoaderRoute: typeof SkillsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/': {
+      id: '/projects/'
+      path: '/projects'
+      fullPath: '/projects/'
+      preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$projectId': {
+      id: '/projects/$projectId'
+      path: '/projects/$projectId'
+      fullPath: '/projects/$projectId'
+      preLoaderRoute: typeof ProjectsProjectIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/task/$taskId': {
+      id: '/task/$taskId'
+      path: '/task/$taskId'
+      fullPath: '/task/$taskId'
+      preLoaderRoute: typeof TaskTaskIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ColleaguesRoute: ColleaguesRoute,
+  ConnectorsRoute: ConnectorsRoute,
+  DiscoverRoute: DiscoverRoute,
+  LibraryRoute: LibraryRoute,
+  SkillsRoute: SkillsRoute,
+  ProjectsProjectIdRoute: ProjectsProjectIdRoute,
+  TaskTaskIdRoute: TaskTaskIdRoute,
+  ProjectsIndexRoute: ProjectsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
