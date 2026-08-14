@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ColleaguesRouteImport } from './routes/colleagues'
 import { Route as SkillsRouteImport } from './routes/skills'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsProjectIdRouteImport } from './routes/projects.$projectId'
@@ -18,6 +19,11 @@ import { Route as TaskTaskIdRouteImport } from './routes/task.$taskId'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ColleaguesRoute = ColleaguesRouteImport.update({
+  id: '/colleagues',
+  path: '/colleagues',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SkillsRoute = SkillsRouteImport.update({
@@ -43,6 +49,7 @@ const TaskTaskIdRoute = TaskTaskIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/colleagues': typeof ColleaguesRoute
   '/skills': typeof SkillsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/task/$taskId': typeof TaskTaskIdRoute
@@ -50,6 +57,7 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/colleagues': typeof ColleaguesRoute
   '/skills': typeof SkillsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/task/$taskId': typeof TaskTaskIdRoute
@@ -58,6 +66,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/colleagues': typeof ColleaguesRoute
   '/skills': typeof SkillsRoute
   '/projects/$projectId': typeof ProjectsProjectIdRoute
   '/task/$taskId': typeof TaskTaskIdRoute
@@ -66,12 +75,24 @@ export interface FileRoutesById {
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/skills' | '/projects/$projectId' | '/task/$taskId' | '/projects/'
+    | '/'
+    | '/colleagues'
+    | '/skills'
+    | '/projects/$projectId'
+    | '/task/$taskId'
+    | '/projects/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/skills' | '/projects/$projectId' | '/task/$taskId' | '/projects'
+  to:
+    | '/'
+    | '/colleagues'
+    | '/skills'
+    | '/projects/$projectId'
+    | '/task/$taskId'
+    | '/projects'
   id:
     | '__root__'
     | '/'
+    | '/colleagues'
     | '/skills'
     | '/projects/$projectId'
     | '/task/$taskId'
@@ -80,6 +101,7 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ColleaguesRoute: typeof ColleaguesRoute
   SkillsRoute: typeof SkillsRoute
   ProjectsProjectIdRoute: typeof ProjectsProjectIdRoute
   TaskTaskIdRoute: typeof TaskTaskIdRoute
@@ -93,6 +115,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/colleagues': {
+      id: '/colleagues'
+      path: '/colleagues'
+      fullPath: '/colleagues'
+      preLoaderRoute: typeof ColleaguesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/skills': {
@@ -128,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ColleaguesRoute: ColleaguesRoute,
   SkillsRoute: SkillsRoute,
   ProjectsProjectIdRoute: ProjectsProjectIdRoute,
   TaskTaskIdRoute: TaskTaskIdRoute,
