@@ -1,0 +1,1 @@
+<script setup lang="ts">defineProps<{title:string;description:string}>()</script><template><header class="flex items-center justify-between gap-4 border-b border-default px-6 py-5"><div><h1 class="text-xl font-semibold text-highlighted">{{title}}</h1><p class="mt-1 text-sm text-muted">{{description}}</p></div><slot/></header></template>
